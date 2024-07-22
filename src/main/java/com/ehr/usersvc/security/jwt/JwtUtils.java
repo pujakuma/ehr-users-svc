@@ -16,7 +16,7 @@ import io.jsonwebtoken.*;
 public class JwtUtils {
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-	@Value("${carwash.app.jwtSecret}")
+	@Value("${ehr-user-svc.app.jwtSecret}")
 	private String jwtSecret;
 
 	@Value("${carwash.app.jwtExpirationMs}")
