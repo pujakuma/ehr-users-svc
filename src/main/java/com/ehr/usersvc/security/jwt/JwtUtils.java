@@ -16,10 +16,10 @@ import io.jsonwebtoken.*;
 public class JwtUtils {
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-	@Value("${ehr-user-svc.app.jwtSecret}")
+	@Value("${ehruser.app.jwtSecret}")
 	private String jwtSecret;
 
-	@Value("${carwash.app.jwtExpirationMs}")
+	@Value("${ehruser.app.jwtExpirationMs}")
 	private int jwtExpirationMs;
 
 	public String generateJwtToken(Authentication authentication) {
