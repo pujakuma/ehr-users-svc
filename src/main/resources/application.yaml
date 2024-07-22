@@ -1,0 +1,81 @@
+APP_NAME: user-svc
+DEPLOYEDVERSION: "@project.version@"
+server:
+   port: 8080
+
+# Db Details
+spring:
+  data:
+    postgres:
+      database: usersdb
+      host: localhost
+      port: 27017
+
+# App Properties for auth
+ehr-user:
+  app:
+    jwtSecret: usersSecretKey
+    jwtExpirationMs: 86400000
+
+jpa:
+  open-in-view: false
+
+# Swagger
+swagger:
+  requestHandlerSelectSelectors: com.ehr
+  pathSelectors: /**
+  serviceName: USER SERVICE
+  serviceDescription: USERS API
+  serviceVersion: ${DEPLOYEDVERSION}
+  contactGroup: "@EHR Developer"
+  contactGroupEmail: pujasa25@gmail.com
+
+server:
+  servlet:
+    context-path: /service/user
+
+# Email Properties
+spring:
+  mail:
+    transport:
+      protocol: smtp
+    from:
+      email: pujasa25@gmail.com
+    host: smtp.gmail.com
+    port: 25
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+    username: pujasa25@gmail.com
+    password: 0000000
+
+## MULTIPART (MultipartProperties)
+servlet:
+  multipart:
+    enabled: true
+    file-size-threshold: 2KB
+    max-file-size: 200MB
+    max-request-size: 215MB
+
+file:
+  upload-dir: ./uploads
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: ehr-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'

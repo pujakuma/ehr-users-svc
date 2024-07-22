@@ -1,0 +1,14 @@
+FROM openjdk:11-jdk-slim as build
+WORKDIR /workspace/app
+
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw install -DskipTests
+
+FROM openjdk:11-jre-slim
+VOLUME /tmp
+COPY --from=build /workspace/app/target/ehr-usersvc-0.0.1-SNAPSHOT.jar ehr-usersvc.jar
+ENTRYPOINT ["java","-jar","/ehr-usersvc.jar"]
