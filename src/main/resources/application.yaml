@@ -7,15 +7,15 @@ server:
 spring:
   data:
     postgres:
-      database: usersdb
-      host: localhost
-      port: 27017
+      database: 
+      host: 
+      port: 
 
 # App Properties for auth
 ehruser:
   app:
-    jwtSecret: usersSecretKey
-    jwtExpirationMs: 86400000
+    jwtSecret: 
+    jwtExpirationMs: 
 
 jpa:
   open-in-view: false
@@ -28,7 +28,7 @@ swagger:
   serviceDescription: USERS API
   serviceVersion: ${DEPLOYEDVERSION}
   contactGroup: "@EHR Developer"
-  contactGroupEmail: pujasa25@gmail.com
+  contactGroupEmail:
 
 server:
   servlet:
@@ -40,7 +40,7 @@ spring:
     transport:
       protocol: smtp
     from:
-      email: pujasa25@gmail.com
+      email: 
     host: smtp.gmail.com
     port: 25
     properties:
@@ -52,7 +52,7 @@ spring:
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
-    username: pujasa25@gmail.com
+    username: 
     password: 0000000
 
 ## MULTIPART (MultipartProperties)
